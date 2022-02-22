@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+
+
+    <body>
+        <%- include('partials/navbar') %>
+
+            <h1>
+                Welcome <%= details.fname %>
+            </h1>
+            <section>
+                <h4>Patient Name: <%= details.fname %>
+                        <%= details.lname%>
+                </h4>
+                <h4>Date of Birth:<%=details.age%>
+                </h4>
+                <h4>Mob no:<%=details.Mob_no%>
+                </h4>
+                <h4>Last appointment:<%=details.lastSeen%>
+                </h4>
+                <h4>Patient ID:<%=details.P_Id%>
+                </h4>
+                <h4>Weight:<%=details.weight%>
+                </h4>
+                <h4>Height:<%=details.height%>
+                </h4>
+            </section>
+    </body>
+
+    </html>

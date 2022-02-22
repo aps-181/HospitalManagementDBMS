@@ -1,0 +1,61 @@
+Patient table
+create table patient(fname varchar(50) NOT NULL,lname varchar(50) NOT NULL,age int NOT NULL,Mob_no varchar(15),lastSeen varchar(32),P_Id int NOT NULL,weight int,height int, PRIMARY KEY(P_Id));
+insert into patient values("John","Tommy",72,"12345678","16/10/2021",12,75,175);
+insert into patient values("Anoop","John",63,"99234561","15/12/2021",13,72,170);
+insert into patient values("Madhav","Pramod",40,"94567231","10/12/2021",14,45,185);
+insert into patient values("Mohammed","Navaz",65,"79234567","19/12/2021",15,85,178);
+insert into patient values("Don","Mathew",88,"876543278","22/12/2021",16,83,180);
+
+
+
+Login table
+create table login(usrname varchar(50),password varchar(50) NOT NULL,P_Id int NOT NULL);
+ALTER TABLE login ADD PRIMARY KEY (usrname);
+insert into login values("John","jon8",12);
+insert into login values("Anoop101","101anoop",13);
+insert into login values("Madhav1","Madhav2",14);
+insert into login values("Navaz13","13navaz",15);
+insert into login values("Don","dON",16);
+
+
+
+Doctor table
+create table doctor(dname varchar(50),Mob_no varchar(15),D_Id int,Specializtion varchar(50),PRIMARY KEY(D_Id));
+insert into doctor values("David",997779923,1,"Orthopedics");
+insert into doctor values("James",997765433,2,"Neurology");
+
+Medicines table
+create table medicines(mname varchar(100),M_Id int,PRIMARY KEY(M_Id));
+insert into medicines values("Paracetamol",1);
+insert into medicines values("Vitamin A",2);
+insert into medicines values("Vicodin",3);
+
+patient_medicine
+create table patient_medicine(P_Id int,D_Id int,M_Id int,qty int,DoI varchar(32),PRIMARY KEY(P_Id,D_Id,M_Id));
+insert into patient_medicine values(16,1,2,15,"22/12/2021");
+
+//new
+insert into patient_medicine values(16,1,1,15,"22/12/2021");
+
+Patient id = 15
+insert into patient_medicine values(15,1,2,10,"19/12/2021");
+insert into patient_medicine values(15,2,3,10,"19/12/2021");
+
+Patient id = 14
+insert into patient_medicine values(14,2,1,20,"10/12/2021");
+insert into patient_medicine values(14,2,3,20,"10/12/2021");
+insert into patient_medicine values(14,1,1,20,"10/12/2021");
+
+Patient id = 13
+insert into patient_medicine values(13,1,2,10,"15/12/2021");
+insert into patient_medicine values(13,1,1,10,"15/12/2021");
+insert into patient_medicine values(13,1,3,10,"15/12/2021");
+insert into patient_medicine values(13,2,1,15,"15/12/2021");
+insert into patient_medicine values(13,2,2,15,"15/12/2021");
+
+Patient id = 12
+insert into patient_medicine values(12,1,1,5,"16/10/2021");
+insert into patient_medicine values(12,1,2,5,"16/10/2021");
+insert into patient_medicine values(12,2,1,7,"16/10/2021");
+insert into patient_medicine values(12,2,2,5,"16/10/2021");
+
