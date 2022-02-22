@@ -48,22 +48,29 @@ app.post('/patient', (req, res) => {
 
     con.query('SELECT * FROM test.login WHERE usrname = ?', [usrname], (err, rows, fields) => {
         if (!err) {
-            pid = rows[0].P_Id;
-            if (rows[0].password === psw) {
-                con.query('SELECT * FROM test.patient WHERE P_Id = ?', [pid], (err, rows, fields) => {
-                    if (!err) {
-                        const details = rows[0];
-                        res.render('patient', { details });
-
-                    }
-                    else {
-                        console.log(err);
-                        res.send("An unexpexted error has occurred.Please login again")
-                    }
-                })
+            if (rows.length === 0) {
+                console.log("Wrong username")
+                res.redirect('/');
             }
             else {
-                res.render('login');
+                pid = rows[0].P_Id;
+                if (rows[0].password === psw) {
+                    con.query('SELECT * FROM test.patient WHERE P_Id = ?', [pid], (err, rows, fields) => {
+                        if (!err) {
+                            const details = rows[0];
+                            res.render('patient', { details });
+
+                        }
+                        else {
+                            console.log(err);
+                            res.send("An unexpexted error has occurred.Please login again")
+                        }
+                    })
+                }
+                else {
+                    console.log("Wrong password");
+                    res.redirect('/');
+                }
             }
         }
         else {
@@ -107,19 +114,6 @@ app.get('/medicines', (req, res) => {
 })
 
 
-
-
-
-
-
-app.get('/appointment', (req, res) => {
-    con.query('SELECT * FROM test.doctor', (err, rows, fields) => {
-        if (!err)
-            console.log(rows[0].usrname);
-        else
-            console.log(err);
-    })
-})
 
 
 
