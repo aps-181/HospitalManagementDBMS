@@ -1,0 +1,19 @@
+<%- include('partials/head') %>
+
+
+    <body>
+        <form action="/admin-login" method="post">
+            <h3>Login</h3>
+            <label for="usrname">Username</label>
+            <input type="text" id="usrname" name="usrname" required>
+            <br>
+            <label for="psw">Password</label>
+            <input type="password" id="psw" name="psw"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+
+    </html>
