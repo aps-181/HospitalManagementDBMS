@@ -3,11 +3,11 @@
 
     <body>
         <%- include('partials/navbar') %>
-
-            <h1>
+        <div class="body1">
+            <h1 id="welcom">
                 Welcome <%= details.fname %>
             </h1>
-            <section>
+            <section class="details">
                 <h4>Patient Name: <%= details.fname %>
                         <%= details.lname%>
                 </h4>
@@ -24,6 +24,44 @@
                 <h4>Height:<%=details.height%>
                 </h4>
             </section>
+        </div>
     </body>
-
+   
     </html>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .body1{
+            background: url(https://t3.ftcdn.net/jpg/02/16/47/22/360_F_216472247_cT66WDoS0fp1s3wC7eaykMJNDGVbOBPq.jpg) no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            width: 100%;
+            background-position: center;
+        }
+        .details{
+            height: 600px;
+            width: 1400px;
+            background: rgba(255,255,255,.1);
+            text-align: center;
+            border-radius: 35px;
+            box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
+            border-top: 1px solid rgba(255,255,255,.3);
+            border-left: 1px solid rgba(255,255,255,.3);
+            backdrop-filter: blur(20px);
+            font-size: 17px;
+            font-weight: 600;
+            color: rgb(7, 28, 54);
+            margin-left: 63px;
+            padding-top: 125px;
+        }
+       #welcom{
+           color:rgb(7, 28, 54);
+           text-align: center;
+       }
+
+
+    </style>
