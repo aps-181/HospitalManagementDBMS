@@ -7,7 +7,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "ansaf2001",
+    password: "aravind"
 });
 
 con.connect(function (err) {
@@ -75,7 +75,7 @@ app.post('/patient', (req, res) => {
         }
         else {
             console.log(err);
-            res.render(login);
+            res.render('login');
         }
     })
 
@@ -97,6 +97,42 @@ app.get('/patient', (req, res) => {
     })
 })
 
+app.get('/admin', (req, res) => {
+
+    res.render("admin-login")
+})
+
+
+// admin sign in
+app.post('/admin-login', (req, res) => {
+    usrname = req.body.usrname;
+    let psw = req.body.psw;
+    let aid = 0;
+    con.query('SELECT * FROM test.login WHERE P_Id = ?', [aid], (err, rows, fields) => {
+        if (!err) {
+            if (rows[0].password === psw && rows[0].usrname === usrname) {
+                res.render("create-user")
+            }
+            else {
+                res.redirect('/admin');
+            }
+        }
+        else {
+            console.log(err);
+            res.render('admin-login');
+        }
+    })
+})
+
+// creating new patient
+app.post('/patient-details', (req, res) => {
+    usrname = req.body.usrname;
+    let psw = req.body.psw;
+    pid = req.body.pid
+
+    con.query("INSERT INTO test.login(usrname,password,P_Id) VALUES (?,?,?)", [usrname, psw, pid]);
+    res.send("Hi")
+})
 
 app.get('/medicines', (req, res) => {
     con.query('SELECT mname,qty,DoI,dname FROM ((test.patient_medicine INNER JOIN test.medicines ON patient_medicine.M_Id = medicines.M_Id) INNER JOIN test.doctor ON patient_medicine.D_Id = doctor.D_Id) WHERE P_Id = ?', [pid], (err, rows, fields) => {
@@ -111,7 +147,9 @@ app.get('/medicines', (req, res) => {
             res.send("An unexpexted error has occurred.Please login again")
         }
     })
+
 })
+
 
 
 
